@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var MongoDB = require('../mongodb/index');
 
-/* GET users listing. */
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
   MongoDB.MongoClient.connect(MongoDB.dbURL, function(err, db) {
     if (err) throw err;
     var dbo = db.db("demo");
@@ -16,6 +15,3 @@ router.get('/', (req, res) => {
 })
 
 module.exports = router;
-
-
-
