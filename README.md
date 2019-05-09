@@ -1,7 +1,7 @@
 # myApp
 node + vue + mongodb
 
-#install
+# install
 npm install
 
 
