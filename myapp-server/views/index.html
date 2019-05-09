@@ -18,9 +18,12 @@
 		req();
 		function req(){
 			$.ajax({
-				url:"/api/login",
-				type: "POST",
-				dataType:"json",
+				url:"/api/register",
+        type: "post",
+        data: {
+          name: "黄君渊",
+          pwd: 123456
+        },
 				success:function(res){
 					console.log(res)
 				}

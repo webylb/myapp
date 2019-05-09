@@ -6,17 +6,18 @@ var logger = require('morgan');
 
 var usersRouter = require('./routes/users/index');
 var loginRouter = require('./routes/login/index');
+var registerRouter = require('./routes/register/index');
 
 var app = express();
-app.listen(8081);
+app.listen(8088);
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By",' 3.2.1')
-  res.header("Content-Type", "application/json;charset=utf-8");
+  //res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
 
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/register', registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

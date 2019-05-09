@@ -4,7 +4,7 @@ var MongoDB = require('../mongodb/index');
 
 router.post('/', (req, res) => {
 
-  let userName = req.body.user;
+  let userName = req.body.name;
   let pwd = req.body.pwd;
 
   if(!userName){
@@ -26,22 +26,20 @@ router.post('/', (req, res) => {
   MongoDB.MongoClient.connect(MongoDB.dbURL, function(err, db) {
     if (err) throw err;
     var dbo = db.db("demo");
-    dbo.collection("user"). find({'name': userName}).toArray(function(err, result) { // 返回集合中所有数据
-      if (err) throw err;
-      if(result.pwd == pwd){
+    dbo.collection("user").insert({'name': userName,'pwd': pwd},(err, result) => {
+      if(result.result.ok === 1){
         res.send({
-          'message': 'ok',
+          'message': '注册成功',
           'code': 1
         })
       }else{
         res.send({
-          'message': '未注册',
+          'message': '注册失败',
           'code': 0
         })
       }
-      db.close();
-    });
-  });
+    })
+  })
 })
 
 module.exports = router;
