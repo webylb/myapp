@@ -4,44 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users');
+var loginRouter = require('./routes/login/index');
 
 var app = express();
 
+app.listen(8081);
 
-// mongodb
-var MongoClient = require('mongodb').MongoClient;
-var dbURL = "mongodb://localhost:27017";
-
-
-app.listen(80);
-
-app.get('/hello', (req, res) => {
-    
-    MongoClient.connect(dbURL, function(err, db) {
-		if (err) throw err;
-		var dbo = db.db("demo");
-	    dbo.collection("user"). find({}).toArray(function(err, result) { // 返回集合中所有数据
-	        if (err) throw err;
-	        res.send(result)
-	        db.close();
-	    });
-	});
-    
-})
-
-app.get('/world', function(req, res) { 
-	res.sendFile(__dirname + '/views/world.html');
-})
-
-app.get('/', function(req, res) { 
+app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/views/index.html');
 })
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
 // app.use(logger('dev'));
@@ -50,8 +25,8 @@ app.get('/', function(req, res) {
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
