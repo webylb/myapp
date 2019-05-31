@@ -1,14 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var usersRouter = require('./routes/users/index');
-var loginRouter = require('./routes/login/index');
-var registerRouter = require('./routes/register/index');
+let usersRouter = require('./routes/users/index');
+let loginRouter = require('./routes/login/index');
+let registerRouter = require('./routes/register/index');
 
-var app = express();
+let app = express();
 app.listen(8088);
 
 //设置跨域访问

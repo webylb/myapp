@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var MongoDB = require('../mongodb/index');
+let express = require('express');
+let router = express.Router();
+let MongoDB = require('../mongodb/index');
 
 router.post('/', (req, res) => {
 
@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
 
   MongoDB.MongoClient.connect(MongoDB.dbURL, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("demo");
+    let dbo = db.db("demo");
     dbo.collection("user").insert({'name': userName,'pwd': pwd},(err, result) => {
       if(result.result.ok === 1){
         res.send({

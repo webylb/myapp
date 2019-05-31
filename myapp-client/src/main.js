@@ -7,14 +7,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import  FastClick  from  'fastclick'
 
 //解决300ms
-FastClick.attach(document.body)
+FastClick.attach(document.body);
 
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

@@ -4,25 +4,6 @@ let MongoDB = require('../mongodb/index');
 
 router.post('/', (req, res) => {
 
-  let userName = req.body.user;
-  let pwd = req.body.pwd;
-
-  if(!userName){
-    res.send({
-      'message': 'err',
-      'code': 11
-    })
-    return
-  }
-
-  if(!pwd){
-    res.send({
-      'message': 'err',
-      'code': 12
-    })
-    return
-  }
-
   MongoDB.MongoClient.connect(MongoDB.dbURL, function(err, db) {
     if (err) throw err;
     let dbo = db.db("demo");
